@@ -1,0 +1,2 @@
+type wdt_tick, domain;
+type wdt_tick_exec, exec_type, file_type;

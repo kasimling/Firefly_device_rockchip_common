@@ -1,0 +1,24 @@
+type catlog, domain;
+type catlog_exec, exec_type, file_type;
+
+allow init catlog_exec:file { execute getattr read open };
+allow init catlog:process { transition };
+allow init catlog:process { rlimitinh siginh noatsecure };
+allow catlog kernel:system { syslog_mod };
+allow catlog catlog:capability { dac_override sys_nice };
+allow catlog catlog:capability2 { syslog };
+allow catlog catlog_exec:file { execute entrypoint read open };
+allow catlog shell_exec:file { getattr read };
+allow catlog rootfs:lnk_file { getattr };
+allow catlog proc:file { write open read };
+allow catlog tmpfs:lnk_file { read };
+allow catlog storage_file:dir { search };
+allow catlog storage_file:lnk_file { read };
+allow catlog mnt_user_file:dir { search };
+allow catlog mnt_user_file:lnk_file { read };
+allow catlog fuse:dir { search getattr create write read open add_name rename remove_name };
+allow catlog fuse:file { getattr create write open rename append };
+allow catlog toolbox_exec:file { execute read open getattr execute_no_trans };
+allow catlog logdr_socket:sock_file { write };
+allow catlog logd:unix_stream_socket { connectto };
+allow catlog logcat_exec:file { execute read open execute_no_trans getattr };
