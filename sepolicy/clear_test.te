@@ -1,0 +1,2 @@
+type clear_test, domain; 
+type clear_test_exec, exec_type, file_type; 
