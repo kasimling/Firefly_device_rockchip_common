@@ -117,17 +117,17 @@ endif
 ifeq ($(TARGET_BOARD_PLATFORM_PRODUCT),box)
 DEVICE_PACKAGE_OVERLAYS += device/rockchip/common/overlay_screenoff
 
-ADDITIONAL_DEFAULT_PROPERTIES += \
-	ro.target.product=box
-else ifeq ($(TARGET_BOARD_PLATFORM_PRODUCT),vr)
-  ADDITIONAL_DEFAULT_PROPERTIES += \
-        ro.target.product=vr
-else ifeq ($(TARGET_BOARD_PLATFORM_PRODUCT),laptop)
-  ADDITIONAL_DEFAULT_PROPERTIES += \
-        ro.target.product=laptop
-else
-  ADDITIONAL_DEFAULT_PROPERTIES += \
-        ro.target.product=tablet
+#ADDITIONAL_DEFAULT_PROPERTIES += \
+#	ro.target.product=box
+#else ifeq ($(TARGET_BOARD_PLATFORM_PRODUCT),vr)
+#  ADDITIONAL_DEFAULT_PROPERTIES += \
+#        ro.target.product=vr
+#else ifeq ($(TARGET_BOARD_PLATFORM_PRODUCT),laptop)
+#  ADDITIONAL_DEFAULT_PROPERTIES += \
+#        ro.target.product=laptop
+#else
+#  ADDITIONAL_DEFAULT_PROPERTIES += \
+#        ro.target.product=tablet
 endif
 TARGET_RELEASETOOLS_EXTENSIONS := device/rockchip/common
 TARGET_PROVIDES_INIT_RC ?= false

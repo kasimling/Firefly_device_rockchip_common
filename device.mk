@@ -38,11 +38,13 @@ endif
 PRODUCT_AAPT_CONFIG ?= normal large xlarge hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG ?= xhdpi
 
+ifneq ($(TARGET_NO_KERNEL), true)
 ########################################################
 # Kernel
 ########################################################
 PRODUCT_COPY_FILES += \
     $(TARGET_PREBUILT_KERNEL):kernel
+endif
 
 #SDK Version
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -223,7 +225,7 @@ endif
 
 ifeq ($(strip $(TARGET_BOARD_PLATFORM_PRODUCT)), box)
     PRODUCT_COPY_FILES += \
-        frameworks/native/data/etc/box_core_hardware.xml:system/etc/permissions/box_core_hardware.xml 
+        device/rockchip/common/box_core_hardware.xml:system/etc/permissions/box_core_hardware.xml 
 else ifeq ($(strip $(TARGET_BOARD_PLATFORM_PRODUCT)), vr)
     PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/vr_core_hardware.xml:system/etc/permissions/vr_core_hardware.xml 
@@ -249,6 +251,32 @@ PRODUCT_PACKAGES += \
 endif
 
 # HAL
+# Gralloc
+PRODUCT_PACKAGES += \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.mapper@2.0-impl
+
+# HW Composer
+PRODUCT_PACKAGES += \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-service
+
+PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-service \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.soundtrigger@2.0-impl
+
+# Keymaster HAL
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
+
+#USB HAL
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
 ifneq ($(strip $(TARGET_BOARD_PLATFORM_PRODUCT)), vr)
 PRODUCT_PACKAGES += \
     power.$(TARGET_BOARD_PLATFORM) 
@@ -258,12 +286,14 @@ PRODUCT_PACKAGES += \
     gralloc.$(TARGET_BOARD_HARDWARE) \
     hwcomposer.$(TARGET_BOARD_HARDWARE) \
     lights.$(TARGET_BOARD_PLATFORM) \
-    camera.$(TARGET_BOARD_HARDWARE) \
-    Camera \
     libvpu \
     libstagefrighthw \
     libgralloc_priv_omx \
     akmd 
+
+#PRODUCT_PACKAGES += \
+#    camera.$(TARGET_BOARD_HARDWARE) \
+#    Camera \
 
 # iep
 ifneq ($(filter rk3188 rk3190 rk3026 rk3288 rk312x rk3126c rk3128 px3se rk3368 rk3328 rk3366 rk3399, $(strip $(TARGET_BOARD_PLATFORM))), )
@@ -613,11 +643,13 @@ endif
 
 # hdmi cec
 ifeq ($(strip $(TARGET_BOARD_PLATFORM_PRODUCT)), box)
-PRODUCT_COPY_FILES += \
-	frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml
-PRODUCT_PROPERTY_OVERRIDES += ro.hdmi.device_type=4
-PRODUCT_PACKAGES += \
-	hdmi_cec.$(TARGET_BOARD_HARDWARE)
+#PRODUCT_COPY_FILES += \
+#	frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml
+#PRODUCT_PROPERTY_OVERRIDES += ro.hdmi.device_type=4
+#PRODUCT_PACKAGES += \
+#	android.hardware.tv.cec@1.0-service \
+#	android.hardware.tv.cec@1.0-impl \
+#	hdmi_cec.$(TARGET_BOARD_HARDWARE)
 endif
 PRODUCT_PACKAGES += \
 	abc

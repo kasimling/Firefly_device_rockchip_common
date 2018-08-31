@@ -1,4 +1,5 @@
-type wfd, domain, domain_deprecated;
+#type wfd, domain, domain_deprecated;
+type wfd, domain;
 type wfd_exec, exec_type, file_type;
 
 init_daemon_domain(wfd)
@@ -17,7 +18,7 @@ allow wfd drm_prop:file { getattr open read};
 allow wfd netd:unix_stream_socket { connectto };
 allow wfd servicemanager:binder { call };
 allow wfd surfaceflinger_service:service_manager { add find };
-allow wfd mediaserver_service:service_manager {add find };
+#allow wfd mediaserver_service:service_manager {add find };
 allow wfd surfaceflinger:binder { call transfer };
 allow wfd mediaserver:binder { call transfer };
 allow wfd mediaserver:fd { use };

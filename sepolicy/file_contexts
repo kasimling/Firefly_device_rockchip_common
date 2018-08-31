@@ -45,7 +45,7 @@
 /sys/devices/virtual/android_usb/android0/(/.*)? -- u:object_r:sysfs_usb:s0
 
 #add for glgps
-/system/bin/glgps    u:object_r:gpsd_exec:s0
+#/system/bin/glgps    u:object_r:gpsd_exec:s0
 
 #lcdcscale
 /sys/devices/fb.11/graphics/fb0/scale -- u:object_r:sysfs_lcdc:s0
@@ -65,7 +65,7 @@
 /system/bin/displayd                 u:object_r:displayd_exec:s0
 
 #for glgps
-/data/system/gps(/.*)?     u:object_r:gps_data_file:s0
+#/data/system/gps(/.*)?     u:object_r:gps_data_file:s0
 
 #for3399 device frp funtions
 /dev/block/platform/fe330000\.sdhci/by-name/frp  u:object_r:frp_block_device:s0

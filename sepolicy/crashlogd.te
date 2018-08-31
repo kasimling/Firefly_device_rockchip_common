@@ -32,7 +32,7 @@ userdebug_or_eng(`
   dontaudit crashlogd domain:peer recv;
   dontaudit crashlogd domain:binder *;
   dontaudit crashlogd property_type:property_service set;
-  dontaudit crashlogd domain:debuggerd *;
+  #dontaudit crashlogd domain:debuggerd *;
   dontaudit crashlogd service_manager_type:service_manager *;
   binder_use(crashlogd);
 ')

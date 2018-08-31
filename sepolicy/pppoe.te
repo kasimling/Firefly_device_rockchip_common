@@ -1,4 +1,5 @@
-type pppoe, domain, domain_deprecated;
+#type pppoe, domain, domain_deprecated;
+type pppoe, domain;
 type pppoe_exec, exec_type, file_type;
 
 init_daemon_domain(pppoe)
@@ -9,8 +10,8 @@ allow pppoe property_socket:sock_file { write };
 allow pppoe init:unix_stream_socket { connectto };
 allow pppoe pppoe:udp_socket { create ioctl };
 allow pppoe pppoe:capability { net_raw net_admin dac_override setuid setgid };
-allow pppoe pppoe:packet_socket { create ioctl read setopt bind write };
-allow pppoe pppoe:socket { create connect ioctl };
+#allow pppoe pppoe:packet_socket { create ioctl read setopt bind write };
+#allow pppoe pppoe:socket { create connect ioctl };
 allow pppoe pppoe_exec:file { execute_no_trans };
 allow pppoe ppp_exec:file { execute getattr read open execute_no_trans };
 allow pppoe ppp_device:chr_file { read write open ioctl };
